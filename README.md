@@ -1,4 +1,12 @@
-# 💘 Valentine Special Web App
+![React](https://img.shields.io/badge/React-18-blue)
+![Tailwind](https://img.shields.io/badge/TailwindCSS-3.3-38bdf8)
+![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+
+
+
+# 💖 Will You Be My Valentine? — React Web App
 
 A playful, mobile-first web application designed to help you ask **"Will you be my Valentine?"** in the most creative and digital way possible. 
 
