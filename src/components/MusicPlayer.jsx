@@ -3,57 +3,81 @@ import React, { useState, useEffect, useRef } from 'react';
 const MusicPlayer = () => {
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef(null);
+    const [hasError, setHasError] = useState(false);
 
-    // A softer, more "lovely" romantic track
-    const songUrl = "https://cdn.pixabay.com/download/audio/2024/01/16/audio_e2b99229a4.mp3?filename=romantic-piano-wedding-love-story-cinematic-background-music-185445.mp3";
+    // Using locally hosted file for stability
+    // Currently using a stable placeholder (SoundHelix) due to download restrictions on other sites.
+    // Replace 'public/music/song.mp3' with your own romantic track!
+    const songUrl = "/music/song.mp3";
 
-    const togglePlay = () => {
-        if (audioRef.current) {
-            if (isPlaying) {
-                audioRef.current.pause();
-            } else {
-                audioRef.current.play().catch(e => console.log("Playback failed:", e));
-            }
-            setIsPlaying(!isPlaying);
-        }
-    };
+    const togglePlay = (e) => {
+        // Prevent click from bubbling up to document listener
+        e.stopPropagation();
 
-    useEffect(() => {
-        // Attempt auto-play on mount (often blocked by browsers until interaction)
-        if (audioRef.current) {
-            audioRef.current.volume = 0.4;
+        if (!audioRef.current) return;
+
+        if (isPlaying) {
+            audioRef.current.pause();
+            setIsPlaying(false);
+        } else {
             const playPromise = audioRef.current.play();
             if (playPromise !== undefined) {
                 playPromise.then(() => {
                     setIsPlaying(true);
-                }).catch(() => {
-                    // Auto-play was prevented
-                    setIsPlaying(false);
+                    setHasError(false);
+                }).catch(err => {
+                    console.error("Playback failed:", err);
+                    setHasError(true);
                 });
             }
         }
+    };
 
-        // Add global click listener to unlock audio context if needed
-        const handleInteraction = () => {
+    useEffect(() => {
+        // Unlock audio context on first user interaction (essential for mobile)
+        const unlockAudio = () => {
             if (audioRef.current && audioRef.current.paused && !isPlaying) {
-                // Optional: one-time play on first click if that's desired behavior
-                // audioRef.current.play(); 
-                // setIsPlaying(true);
+                audioRef.current.play()
+                    .then(() => {
+                        setIsPlaying(true);
+                        setHasError(false);
+                    })
+                    .catch(() => {
+                        // Silent fail - user will use the button
+                    });
+
+                // Remove listeners immediately after first attempt
+                cleanUpListeners();
             }
         };
 
-        document.addEventListener('click', handleInteraction, { once: true });
-        return () => document.removeEventListener('click', handleInteraction);
-    }, []);
+        const cleanUpListeners = () => {
+            document.removeEventListener('click', unlockAudio);
+            document.removeEventListener('touchstart', unlockAudio);
+        };
+
+        document.addEventListener('click', unlockAudio);
+        document.addEventListener('touchstart', unlockAudio);
+
+        return () => cleanUpListeners();
+    }, []); // Empty dependency array - run once on mount
 
     return (
-        <div className="fixed top-4 right-4 z-50">
-            <audio ref={audioRef} src={songUrl} loop />
+        <div className="fixed top-4 right-4 z-50 flex flex-col items-end gap-2">
+            <audio
+                ref={audioRef}
+                src={songUrl}
+                loop
+                crossOrigin="anonymous"
+                onError={() => setHasError(true)}
+            />
             <button
                 onClick={togglePlay}
-                className="bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-lg border border-pink-200 text-pink-500 hover:bg-pink-50 transition-all hover:scale-110 animate-fade-in"
+                className={`bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg border transition-all hover:scale-110 active:scale-95 animate-fade-in ${hasError ? 'border-red-300 text-red-500' : 'border-pink-200 text-pink-500 hover:bg-pink-50'
+                    }`}
+                title={hasError ? "Music failed to load" : (isPlaying ? "Pause Music" : "Play Music")}
             >
-                {isPlaying ? '🎵' : '🔇'}
+                {hasError ? '⚠️' : (isPlaying ? '🎵' : '🔇')}
             </button>
         </div>
     );
