@@ -4,12 +4,7 @@ A playful, mobile-first web application designed to help you ask **"Will you be 
 
 The app features a **Generator** to create personalized links, a **Question Page** with an uncatchable "No" button, and a **Celebration Page** with confetti and music.
 
-🌐 **Live Demo:**  
-👉 https://valentine-blue-beta.vercel.app/
-
-
-![Valentine App Preview](./src/assets/image.png)
-
+![Valentine App Preview](https://i.imgur.com/your-preview-image.png)
 
 ## ✨ Features
 
