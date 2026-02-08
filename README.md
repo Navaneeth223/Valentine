@@ -1,16 +1,71 @@
-# React + Vite
+# 💘 Valentine Special Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A playful, mobile-first web application designed to help you ask **"Will you be my Valentine?"** in the most creative and digital way possible. 
 
-Currently, two official plugins are available:
+The app features a **Generator** to create personalized links, a **Question Page** with an uncatchable "No" button, and a **Celebration Page** with confetti and music.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Valentine App Preview](https://i.imgur.com/your-preview-image.png)
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Personalized Links**: Enter your name and your partner's name to generate a unique link.
+- **Smart "No" Button**: The "No" button is evasive! It runs away from the cursor or touch, ensuring it forces a "Yes". It uses smart logic to **always** stay visible on screen.
+- **Heart Trails**: A beautiful trail of hearts follows your mouse or finger.
+- **Romantic Atmosphere**: Background music (toggleable), floating hearts, and a custom heart cursor.
+- **Mobile First**: Designed to look perfect on phones and desktops alike.
+- **No Backend Required**: All personalization data is stored safely in the URL itself.
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm or yarn
+
+### Installation
+
+1.  **Clone the repository** (or download source):
+    ```bash
+    git clone https://github.com/yourusername/valentine-app.git
+    cd valentine-app
+    ```
+
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
+
+3.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
+
+4.  Open your browser at `http://localhost:5173`.
+
+## 🛠️ Tech Stack
+
+-   **Frontend**: React + Vite
+-   **Styling**: Tailwind CSS (v4)
+-   **Routing**: React Router DOM (v7)
+-   **Animations**: CSS Keyframes & Canvas Confetti
+-   **Icons**: Native Emojis & SVG
+
+## 📦 Deployment (Vercel)
+
+This app is optimized for Vercel.
+
+1.  Push your code to GitHub.
+2.  Import the project into Vercel.
+3.  Deploy!
+4.  Share your live link!
+
+## 💌 How to Use
+
+1.  Open the app.
+2.  Fill in **Your Name** and **Partner's Name**.
+3.  (Optional) Add a cute photo and choose an emoji.
+4.  Click **Generate Link**.
+5.  Copy the link and send it to your special someone! ❤️
+
+---
+Made with ❤️ by [Your Name]
