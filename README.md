@@ -73,4 +73,4 @@ This app is optimized for Vercel.
 5.  Copy the link and send it to your special someone! ❤️
 
 ---
-Made with ❤️ by [Your Name]
+Made with ❤️ by Navaneeth.k.v
